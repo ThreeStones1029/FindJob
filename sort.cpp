@@ -69,23 +69,63 @@ void insertion_sort(std::vector<int>& array) {
 void shell_sort(std::vector<int>& array) {
     int n = array.size();
     // 初始间隔 gap 选择为 n / 2
-    for (int gap = n / 2; gap > 0; gap /= 2) {
-        // 对每组使用插入排序
-        for (int i = gap; i < n; i++) {
-            int temp = array[i];
-            int j;
-            // 对当前组进行插入排序
-            for (j = i; j >= gap && array[j - gap] > temp; j -= gap) {
-                array[j] = array[j - gap];
-            }
-            array[j] = temp;
+    int d,i,j,temp;
+	for(d = n/2;d >= 1;d = d/2){
+		for(i = d;i < n;i++){//增量为i++，即各个子表交错处理 
+			if(array[i]<array[i-d]){
+				temp=array[i];
+				for(j = i - d;j >= 0 && temp < array[j];j -= d){
+					array[j + d] = array[j];
+				}
+				array[j + d] = temp;
+			}
+		}
+	}
+}
+
+// （5）归并排序
+// 递归法
+void merge(std::vector<int>& array, int left, int mid, int right) {
+    std::vector<int> left_array(array.begin() + left, array.begin() + mid + 1);
+    std::vector<int> right_array(array.begin() + mid + 1, array.begin() + right + 1);
+
+    int left_index = 0;
+    int right_index = 0;
+    // 插入哨兵值可以省去判断某个数组是否遍历完成的判断
+    left_array.insert(left_array.end(), std::numeric_limits<int>::max());
+    right_array.insert(right_array.end(), std::numeric_limits<int>::max());
+
+    for (int i = left; i <= right; i++) {
+        if (left_array[left_index] < right_array[right_index]) {
+            array[i] = left_array[left_index];
+            left_index++;
+        }
+        else {
+            array[i] = right_array[right_index];
+            right_index++;
         }
     }
 }
 
-// （5）归并排序
+void merge_sort(std::vector<int>& array, int left, int right) {
+    if (left >= right) return;
+    int mid = (left + right) / 2;
+    merge_sort(array, left, mid);
+    merge_sort(array, mid + 1, right);
+    merge(array, left, mid, right);
+}
 
 // （6）快速排序
+
+void paritition() {
+    
+}
+
+void quick_sort(std::vector<int>& array) {
+    int n = array.size();
+
+
+}
 
 // （7）堆排序
 
@@ -120,7 +160,13 @@ int main() {
     // insertion_sort(array);
 
     // 希尔排序
-    shell_sort(array);
+    // shell_sort(array);
+
+    // 归并排序
+    // merge_sort(array, 0, array.size() - 1);
+    
+    // 快速排序
+    quick_sort(array);
  
     print_array(array);
 
