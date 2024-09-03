@@ -116,15 +116,28 @@ void merge_sort(std::vector<int>& array, int left, int right) {
 }
 
 // （6）快速排序
-
-void paritition() {
-    
+int paritition(std::vector<int> array, int left, int right) {
+    int pivot = array[left];
+    while (left < right) {
+        while (left < right && array[right] > pivot) {
+            --right;
+        }
+        array[left] = array[right];
+        while (left < right && array[left] >= pivot) {
+            ++left;
+        }
+        array[right] = array[left];
+    }
+    array[left] = pivot;
+    return left;
 }
 
-void quick_sort(std::vector<int>& array) {
-    int n = array.size();
-
-
+void quick_sort(std::vector<int>& array, int left, int right) {
+    if (left < right) {
+        int pivot = paritition(array, left, right);
+        quick_sort(array, left, pivot - 1);
+        quick_sort(array, pivot, right);
+    }
 }
 
 // （7）堆排序
@@ -166,7 +179,7 @@ int main() {
     // merge_sort(array, 0, array.size() - 1);
     
     // 快速排序
-    quick_sort(array);
+    quick_sort(array, 0, array.size());
  
     print_array(array);
 
