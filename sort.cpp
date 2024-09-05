@@ -225,13 +225,12 @@ void bucket_sort(std::vector<int>& array) {
         int index = (num - min) * bucket_count / bucket_size;
         bucket[index].push_back(num);
     }
-
     // 对每个桶的元素进行排序
     for (auto& b: bucket) {
         sort(b.begin(), b.end());
     }
 
-    	// 将排序后的元素依次放回原数组
+    // 将排序后的元素依次放回原数组
 	int index = 0;
 	for (auto& b : bucket) {
 		for (int num : b) {
@@ -281,7 +280,7 @@ void radix_sort(std::vector<int>& array) {
             tmp[count[k] - 1] = array[j];
             count[k]--;
         }
-        for(j = 0; j < n; j++) //将临时数组的内容复制到data中
+        for(j = 0; j < n; j++) //将临时数组的内容复制到array中
             array[j] = tmp[j];
         radix = radix * 10;
     }
@@ -336,7 +335,5 @@ int main() {
     radix_sort(array);
 
     print_array(array);
-
-
     return 0;
 }
