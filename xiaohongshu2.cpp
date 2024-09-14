@@ -4,11 +4,12 @@
  * @Author: 帅磊240108 2158097607@xiaomi.com
  * @Date: 2024-09-01 16:01:53
  * @LastEditors: ShuaiLei
- * @LastEditTime: 2024-09-01 16:01:57
+ * @LastEditTime: 2024-09-12 22:51:20
  */
 #include <iostream>
 #include <vector>
 #include <algorithm>
+
 
 int minimizeUnpleasantness(std::vector<int>& categories, std::vector<int>& movable) {
     int n = categories.size();
