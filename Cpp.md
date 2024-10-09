@@ -7,6 +7,8 @@
  * @LastEditors: ShuaiLei
  * @LastEditTime: 2024-10-01 16:46:09
 -->
+[TOC]
+
 # 一、C++基础语法
 
 ## 1.1.main函数在执行之前和之后执行的代码可能是什么？
