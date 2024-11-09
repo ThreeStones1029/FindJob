@@ -14,7 +14,7 @@ int minRelay(std::vector<int>& distances) {
             if (distances[j] >= i - j) {
                 dp[i] = std::min(dp[i], dp[j] + 1);
             }
-        }
+        }                                          
     }
 
     return dp[n-1] == INT_MAX ? -1 : dp[n-1];
