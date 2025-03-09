@@ -1198,7 +1198,68 @@ ldd可以查看可执行文件依赖的库以及路径
 
 ## 6.2.中科创达一面
 
-### 6.2.1.const与typedef区别，分别发生在预编译、编译的什么阶段？
+### 6.2.1.define、typedef、const区别？
+
+#### （1）define宏定义
+
+define又称为宏定义，
+
+#### （2）typedef数据类型重命名
+
+
+
+#### （3）const
+
+const对象创建时必须初始化
+
+默认状态下，const对象仅仅在文件里面有效，如果想在多个文件使用同一个const变量，可以在一个头文件里面声明
+
+常量指针和指针常量
+
+~~~cpp
+int age = 39;
+const int * p1 = &age; # const修饰*p1，可以改变指向，不能改变指向的值
+int* const p2 = &age; # const修饰的p2，不可以改变指向，可以改变指向的值
+~~~
+
+底层const和顶层const
+
+~~~cpp
+
+~~~
+
+
+
+#### （4）const和#define的区别？
+
+const定义的常量是变量带类型，#define定义的是常数不带类型
+
+#define在预处理阶段起作用，只是简单的文本替换，const在编译、链接过程起作用
+
+#define只是简单的字符串替换没有类型检查，const会进行类型检查
+
+#define预处理后占用代码段空间。const占用数据段空间
+
+const不能重定义，#define可以通过#undef取消定义
+
+#define可以文件被重复引用
+
+#### （5）#define和typedef的区别？
+
+typedef在编译阶段，具有类型检查功能，#define在预处理阶段，不会进行类型检查
+
+#define没有作用域的限制，只要是预定义的宏，typedef有作用域的限制
+
+typedef用于定义类型别名，#define不只是可以取别名，还可以定义变量、常量、编译开关等
+
+例如
+
+~~~cpp
+#define P1 int*
+typedef int* P2;
+P1 a, b;//相当于int* a, b，此时a是int指针，b是int整数。
+P2 a, b;//表示a和b都是int指针。
+~~~
 
 ### 6.2.2.死锁的条件？
 
@@ -1928,3 +1989,12 @@ tail  -n 5 /etc/profile # 末尾几行
 
 
 
+### 6.18.1.引用和指针区别？什么时候使用？
+
+引用：
+
+指针：
+
+### 6.18.2.在大型数据的时候为什么使用引用而不使用指针
+
+### 6.18.3.
